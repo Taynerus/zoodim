@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗооДім - Каталог товарів</title>
+    <!-- Підключення шрифту Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Підключення наших стилів -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">ЗооДім</a>
+
+            <nav class="main-nav" aria-label="Головне меню">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link">Каталог</a></li>
+                    <li><a href="#" class="nav-link">Акції</a></li>
+                    <li><a href="#" class="nav-link">Ветеринарні дієти</a></li>
+                </ul>
+            </nav>
+
+            <!-- Новий рядок пошуку -->
+            <div class="search-bar">
+                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук">
+                <button type="button" aria-label="Знайти">🔍</button>
+            </div>
+
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Профіль вихованця">👤</button>
+                <!-- Кошик із бейджем -->
+                <button class="icon-btn cart-btn" aria-label="Кошик">
+                    🛒
+                    <span class="cart-badge">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент -->
+    <main class="main-content">
+        <div class="container layout-grid">
+
+            <!-- Бокова панель з фільтрами -->
+            <aside class="sidebar">
+                <h2 class="sidebar-title">Фільтри</h2>
+                <div class="filter-group">
+                    <h3 class="filter-subtitle">Категорія</h3>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" checked>
+                        <span>Сухий корм</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span>Вологий корм</span>
+                    </label>
+                </div>
+                <div class="filter-group">
+                    <h3 class="filter-subtitle">Особливі потреби</h3>
+                    <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span>Для стерилізованих</span>
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span>Чутливе травлення</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- Каталог товарів -->
+            <section class="catalog" aria-label="Список товарів">
+                <div class="catalog-header">
+                    <h1 class="page-title">Сухий корм для собак</h1>
+                    <span class="results-count">Знайдено: 24 товари</span>
+                </div>
+
+                <!-- Сітка товарів (Grid) -->
+                <div class="products-grid">
+
+                    <!-- Картка 1: Acana -->
+                    <article class="product-card">
+                        <div class="card-badge badge-sale">Акція</div>
+                        <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400&q=80" alt="Корм Acana" class="product-image">
+
+                        <div class="product-info">
+                            <h3 class="product-title">Acana Adult Dog Recipe</h3>
+
+                            <!-- Інтерактивний блок (Радіокнопки + Вага + Ціна) -->
+                            <div class="product-interactive">
+                                <!-- Приховані радіокнопки, що керують станом -->
+                                <input type="radio" name="acana" id="acana-2" class="hidden-radio">
+                                <input type="radio" name="acana" id="acana-6" class="hidden-radio">
+                                <input type="radio" name="acana" id="acana-11" class="hidden-radio" checked>
+
+                                <!-- Кнопки вибору ваги -->
+                                <div class="weight-selector">
+                                    <label for="acana-2" class="weight-chip-label">2 кг</label>
+                                    <label for="acana-6" class="weight-chip-label">6 кг</label>
+                                    <label for="acana-11" class="weight-chip-label">11.4 кг</label>
+                                </div>
+
+                                <!-- Динамічні ціни -->
+                                <div class="price-container">
+                                    <div class="price-view price-2">
+                                        <span class="price-current">850 грн</span>
+                                    </div>
+                                    <div class="price-view price-6">
+                                        <span class="price-current">1 950 грн</span>
+                                    </div>
+                                    <div class="price-view price-11">
+                                        <span class="price-current">3 250 грн</span>
+                                        <span class="price-old">3 800 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary">В кошик</button>
+                            <!-- Кнопка виклику модального вікна -->
+                            <label for="quick-buy-modal" class="btn btn-secondary" style="margin-top: 8px;">В 1 клік</label>
+                        </div>
+                    </article>
+
+                    <!-- Картка 2: Royal Canin -->
+                    <article class="product-card">
+                        <div class="card-badge badge-vet">Vet Diet</div>
+                        <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=400&q=80" alt="Корм Royal Canin" class="product-image">
+
+                        <div class="product-info">
+                            <h3 class="product-title">Royal Canin Gastrointestinal</h3>
+
+                            <div class="product-interactive">
+                                <input type="radio" name="royal" id="royal-1" class="hidden-radio">
+                                <input type="radio" name="royal" id="royal-15" class="hidden-radio" checked>
+
+                                <div class="weight-selector">
+                                    <label for="royal-1" class="weight-chip-label">1.5 кг</label>
+                                    <label for="royal-15" class="weight-chip-label">15 кг</label>
+                                </div>
+
+                                <div class="price-container">
+                                    <div class="price-view price-1">
+                                        <span class="price-current">540 грн</span>
+                                    </div>
+                                    <div class="price-view price-15">
+                                        <span class="price-current">4 100 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary">В кошик</button>
+                        </div>
+                    </article>
+
+                    <!-- Картка 3: Josera -->
+                    <article class="product-card">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&q=80" alt="Корм Josera" class="product-image">
+
+                        <div class="product-info">
+                            <h3 class="product-title">Josera Festival</h3>
+
+                            <div class="product-interactive">
+                                <input type="radio" name="josera" id="josera-sm" class="hidden-radio">
+                                <input type="radio" name="josera" id="josera-lg" class="hidden-radio" checked>
+
+                                <div class="weight-selector">
+                                    <label for="josera-sm" class="weight-chip-label">900 г</label>
+                                    <label for="josera-lg" class="weight-chip-label">15 кг</label>
+                                </div>
+
+                                <div class="price-container">
+                                    <div class="price-view price-sm">
+                                        <span class="price-current">280 грн</span>
+                                    </div>
+                                    <div class="price-view price-lg">
+                                        <span class="price-current">2 850 грн</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary">В кошик</button>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Підвал сайту -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-info">
+                <p class="logo" style="color: var(--color-white);">ЗооДім</p>
+                <p class="footer-desc">Турбота про ваших улюбленців у кожному замовленні.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Доставка та оплата</a>
+                <a href="#">Контакти</a>
+                <a href="#">Умови використання</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         МОДАЛЬНЕ ВІКНО "КУПИТИ В 1 КЛІК" (CSS-only)
+         ========================================= -->
+    <input type="checkbox" id="quick-buy-modal" class="modal-toggle">
+
+    <div class="modal-overlay">
+        <label for="quick-buy-modal" class="modal-backdrop"></label>
+
+        <div class="modal-content">
+            <label for="quick-buy-modal" class="modal-close">×</label>
+            <h2 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">Швидке замовлення</h2>
+
+            <div class="modal-product-info">
+                <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100&q=80" alt="Acana">
+                <div>
+                    <h4 style="margin-bottom: 4px;">Acana Adult Dog Recipe</h4>
+                    <p style="color: #666; font-size: 14px;">11.4 кг — 3 250 грн</p>
+                </div>
+            </div>
+
+            <form class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Ваше ім'я</label>
+                    <input type="text" class="form-input" placeholder="Наприклад, Олександр" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Номер телефону</label>
+                    <input type="tel" class="form-input" value="+380" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Замовити дзвінок</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

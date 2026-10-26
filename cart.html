@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗооДім - Кошик</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ЗооДім</a>
+            <nav class="main-nav" aria-label="Головне меню">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Каталог</a></li>
+                    <li><a href="#" class="nav-link">Акції</a></li>
+                    <li><a href="#" class="nav-link">Ветеринарні дієти</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук">
+                <button type="button" aria-label="Знайти">🔍</button>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Профіль вихованця">👤</button>
+                <button class="icon-btn cart-btn" aria-label="Кошик">
+                    🛒
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент кошика -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title" style="margin-bottom: var(--spacing-lg);">Мій кошик</h1>
+
+            <div class="cart-layout">
+                <!-- Ліва колонка: Список товарів та налаштування -->
+                <div class="cart-main">
+
+                    <div class="subscription-box">
+                        <div class="subscription-info">
+                            <h3>Регулярна доставка</h3>
+                            <p>Отримуйте корм кожні 3 тижні зі знижкою 5%</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" class="toggle-input">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="cart-items-list">
+                        <div class="cart-item">
+                            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&q=80" alt="Acana" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h3 class="product-title">Acana Adult Dog Recipe</h3>
+                                <p class="product-weight">Вага: 11.4 кг</p>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn">−</button>
+                                <span>1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <div class="cart-item-price">
+                                <span class="price-current">3 250 грн</span>
+                            </div>
+                            <button class="remove-btn" aria-label="Видалити">🗑️</button>
+                        </div>
+
+                        <div class="cart-item">
+                            <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=200&q=80" alt="Royal Canin" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <h3 class="product-title">Royal Canin Gastrointestinal</h3>
+                                <p class="product-weight">Вага: 15 кг</p>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="qty-btn">−</button>
+                                <span>1</span>
+                                <button class="qty-btn">+</button>
+                            </div>
+                            <div class="cart-item-price">
+                                <span class="price-current">4 100 грн</span>
+                            </div>
+                            <button class="remove-btn" aria-label="Видалити">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Права колонка: Підсумок замовлення -->
+                <aside class="order-summary">
+                    <h2 class="sidebar-title">Підсумок</h2>
+                    <div class="promo-code-box">
+                        <input type="text" placeholder="Промокод">
+                        <button class="btn btn-secondary">Застосувати</button>
+                    </div>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Товари (2)</span>
+                            <span>7 350 грн</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Знижка</span>
+                            <span style="color: var(--color-accent);">- 0 грн</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Доставка</span>
+                            <span style="color: var(--color-success);">Безкоштовно</span>
+                        </div>
+                    </div>
+                    <div class="summary-total">
+                        <span>Разом</span>
+                        <span>7 350 грн</span>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: var(--spacing-md);">Оформити замовлення</button>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Підвал сайту -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-info">
+                <p class="logo" style="color: var(--color-white);">ЗооДім</p>
+                <p class="footer-desc">Турбота про ваших улюбленців у кожному замовленні.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Доставка та оплата</a>
+                <a href="#">Контакти</a>
+                <a href="#">Умови використання</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

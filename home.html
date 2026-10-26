@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗооДім - Головна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ЗооДім</a>
+            <nav class="main-nav" aria-label="Головне меню">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Каталог</a></li>
+                    <li><a href="#" class="nav-link">Акції</a></li>
+                    <li><a href="#" class="nav-link">Ветеринарні дієти</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук">
+                <button type="button" aria-label="Знайти">🔍</button>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Профіль вихованця">👤</button>
+                <button class="icon-btn cart-btn" aria-label="Кошик">
+                    🛒
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Головна сторінка -->
+    <main class="main-content" style="padding-top: 0;">
+
+        <!-- Банер (Hero Section) -->
+        <section class="hero-section">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h1 class="hero-title">Найкраще для ваших улюбленців</h1>
+                    <p class="hero-subtitle">Широкий вибір преміум-кормів, іграшок та ветеринарних дієт. Безкоштовна доставка для замовлень від 1000 грн.</p>
+                    <a href="index.html" class="btn btn-primary hero-btn" style="display: inline-block; width: auto; padding: 16px 32px;">Перейти до каталогу</a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&q=80" alt="Щасливий собака" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Популярні категорії -->
+        <section class="categories-section container" style="margin-top: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
+            <h2 style="text-align: center; font-size: 32px; color: var(--color-primary); margin-bottom: var(--spacing-lg);">Популярні категорії</h2>
+
+            <div class="categories-grid">
+                <!-- Категорія 1 -->
+                <a href="index.html" class="category-card">
+                    <div class="category-icon">🐕</div>
+                    <h3>Собакам</h3>
+                </a>
+                <!-- Категорія 2 -->
+                <a href="#" class="category-card">
+                    <div class="category-icon">🐈</div>
+                    <h3>Котам</h3>
+                </a>
+                <!-- Категорія 3 -->
+                <a href="#" class="category-card">
+                    <div class="category-icon">🦜</div>
+                    <h3>Птахам</h3>
+                </a>
+                <!-- Категорія 4 -->
+                <a href="#" class="category-card">
+                    <div class="category-icon">💊</div>
+                    <h3>Вет-аптека</h3>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Підвал сайту -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-info">
+                <p class="logo" style="color: var(--color-white);">ЗооДім</p>
+                <p class="footer-desc">Турбота про ваших улюбленців у кожному замовленні.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Доставка та оплата</a>
+                <a href="#">Контакти</a>
+                <a href="#">Умови використання</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

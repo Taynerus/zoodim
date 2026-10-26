@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗооДім - Особистий кабінет</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ЗооДім</a>
+            <nav class="main-nav" aria-label="Головне меню">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Каталог</a></li>
+                    <li><a href="#" class="nav-link">Акції</a></li>
+                    <li><a href="#" class="nav-link">Ветеринарні дієти</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук">
+                <button type="button" aria-label="Знайти">🔍</button>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Профіль вихованця">👤</button>
+                <button class="icon-btn cart-btn" aria-label="Кошик">
+                    🛒
+                    <span class="cart-badge">2</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент особистого кабінету -->
+    <main class="main-content">
+        <div class="container layout-grid">
+
+            <!-- Бокова навігація кабінету -->
+            <aside class="sidebar profile-sidebar">
+                <div class="user-info">
+                    <div class="user-avatar">О</div>
+                    <div>
+                        <p class="user-name">Олександр</p>
+                        <p class="user-email">oleksandr@example.com</p>
+                    </div>
+                </div>
+                <nav class="profile-nav">
+                    <a href="#" class="profile-link active">🐾 Профілі тварин</a>
+                    <a href="#" class="profile-link">📦 Історія замовлень</a>
+                    <a href="#" class="profile-link">⚙️ Налаштування</a>
+                </nav>
+            </aside>
+
+            <!-- Контентна частина (Профілі) -->
+            <section class="profile-content">
+                <div class="catalog-header">
+                    <h1 class="page-title">Мої улюбленці</h1>
+                    <button class="btn btn-primary" style="width: auto; padding: 10px 20px;">+ Додати профіль</button>
+                </div>
+
+                <!-- Сітка карток тварин -->
+                <div class="pets-grid">
+
+                    <!-- Картка 1: Марсель -->
+                    <article class="pet-card">
+                        <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=300&q=80" alt="Пес Марсель" class="pet-image">
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h3>Марсель</h3>
+                                <span class="pet-breed">Французький бульдог</span>
+                            </div>
+                            <div class="pet-stats">
+                                <div class="stat-box">
+                                    <span class="stat-label">Вага</span>
+                                    <span class="stat-value">12.5 кг</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Вік</span>
+                                    <span class="stat-value">3 роки</span>
+                                </div>
+                            </div>
+                            <div class="pet-badges">
+                                <span class="card-badge badge-vet" style="position: static;">Чутливе травлення</span>
+                            </div>
+                            <div class="pet-actions">
+                                <button class="btn btn-secondary" style="padding: 8px;">Редагувати</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Картка 2: Мія -->
+                    <article class="pet-card">
+                        <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=300&q=80" alt="Кішка Мія" class="pet-image">
+                        <div class="pet-info">
+                            <div class="pet-header">
+                                <h3>Мія</h3>
+                                <span class="pet-breed">Безпородна</span>
+                            </div>
+                            <div class="pet-stats">
+                                <div class="stat-box">
+                                    <span class="stat-label">Вага</span>
+                                    <span class="stat-value">4.2 кг</span>
+                                </div>
+                                <div class="stat-box">
+                                    <span class="stat-label">Вік</span>
+                                    <span class="stat-value">5 років</span>
+                                </div>
+                            </div>
+                            <div class="pet-badges">
+                                <span class="card-badge badge-sale" style="position: static;">Стерилізована</span>
+                            </div>
+                            <div class="pet-actions">
+                                <button class="btn btn-secondary" style="padding: 8px;">Редагувати</button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Підвал сайту -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-info">
+                <p class="logo" style="color: var(--color-white);">ЗооДім</p>
+                <p class="footer-desc">Турбота про ваших улюбленців у кожному замовленні.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Доставка та оплата</a>
+                <a href="#">Контакти</a>
+                <a href="#">Умови використання</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

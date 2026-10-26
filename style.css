@@ -1,0 +1,1381 @@
+/* =========================================
+   1. DESIGN TOKENS (Змінні дизайн-системи)
+   ========================================= */
+:root {
+    /* Кольорова палітра */
+    --color-primary: #173D2C; /* Forest 900 */
+    --color-primary-hover: #2B654A; /* Forest 700 */
+    --color-bg-main: #F8F3E8; /* Cream */
+    --color-bg-alt: #EEE4D2; /* Beige */
+    --color-accent: #EF6A4B; /* Coral */
+    --color-text-main: #1E2923; /* Ink */
+    --color-success: #27885B;
+    --color-error: #C94242;
+    --color-white: #FFFFFF;
+    /* Типографіка */
+    --font-family: 'Inter', sans-serif;
+    /* Відступи (на основі 8px сітки) */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    /* Радіуси скруглення */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+}
+
+/* =========================================
+   2. СКИДАННЯ СТИЛІВ (Reset)
+   ========================================= */
+*, *::before, *::after {
+    box-sizing: border-box; /* Коректна блокова модель */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text-main);
+    background-color: var(--color-bg-main);
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* =========================================
+   3. ГЛОБАЛЬНІ КЛАСИ
+   ========================================= */
+/* Контейнер для обмеження ширини контенту */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-xl);
+    }
+}
+/* =========================================
+   4. ШАПКА САЙТУ (Header) - Flexbox
+   ========================================= */
+.header {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-bg-alt);
+    padding: var(--spacing-sm) 0;
+}
+
+/* Flexbox для вирівнювання елементів шапки в один ряд */
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.nav-list {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--color-text-main);
+    transition: color 0.2s ease;
+}
+
+    .nav-link:hover {
+        color: var(--color-primary-hover);
+    }
+
+.header-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+}
+
+    .icon-btn:hover {
+        background-color: var(--color-bg-main);
+    }
+
+/* =========================================
+   5. ПІДВАЛ САЙТУ (Footer) - Flexbox
+   ========================================= */
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-xl);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.footer-desc {
+    margin-top: var(--spacing-xs);
+    color: var(--color-bg-alt);
+    max-width: 300px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+    .footer-links a {
+        color: var(--color-bg-alt);
+        transition: color 0.2s ease;
+    }
+
+        .footer-links a:hover {
+            color: var(--color-white);
+        }
+/* =========================================
+   6. ГОЛОВНИЙ МАКЕТ (Layout) - CSS Grid
+   ========================================= */
+.main-content {
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.layout-grid {
+    display: grid;
+    /* Дві колонки: ліва фіксована (250px) для фільтрів, права (1fr) займає весь вільний простір */
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* =========================================
+   7. БОКОВА ПАНЕЛЬ (Sidebar)
+   ========================================= */
+.sidebar {
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-title {
+    font-size: 20px;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+}
+
+.filter-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.filter-subtitle {
+    font-size: 16px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-main);
+}
+
+/* Стилізація кастомних чекбоксів */
+/* =========================================
+   ДОДАТКОВИЙ ЕТАП 4. Кастомні чекбокси (UI Polish)
+   ========================================= */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+    user-select: none; /* Забороняємо виділення тексту при кліку */
+}
+
+    /* Ховаємо стандартний системний чекбокс */
+    .custom-checkbox input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Створюємо власний дизайн чекбокса через псевдоелемент ::before */
+    .custom-checkbox span {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+        .custom-checkbox span::before {
+            content: '';
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            border: 2px solid #D1D5DB; /* Світло-сіра рамка */
+            border-radius: 6px;
+            margin-right: 12px;
+            background-color: var(--color-white);
+            transition: all 0.2s ease;
+        }
+
+    /* Ефект при наведенні (Hover) */
+    .custom-checkbox:hover input ~ span::before {
+        border-color: var(--color-primary-hover);
+    }
+
+    /* Стан, коли чекбокс активний (Checked) */
+    .custom-checkbox input:checked ~ span::before {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+    }
+
+    /* Створюємо саму "галочку" всередині чекбокса */
+    .custom-checkbox span::after {
+        content: '';
+        position: absolute;
+        left: 8px; /* Позиціонуємо галочку по центру квадрата */
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid var(--color-white);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    /* Показуємо галочку тільки при активному стані */
+    .custom-checkbox input:checked ~ span::after {
+        opacity: 1;
+    }
+
+/* =========================================
+   8. КАТАЛОГ ТА СІТКА ТОВАРІВ (Products Grid)
+   ========================================= */
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.page-title {
+    font-size: 28px;
+    color: var(--color-primary);
+}
+
+.results-count {
+    color: #666;
+    font-size: 14px;
+}
+
+.products-grid {
+    display: grid;
+    /* Автоматичне створення колонок: мінімум 280px, якщо є місце - розтягуються рівномірно */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+/* =========================================
+   9. КАРТКА ТОВАРУ (Product Card)
+   ========================================= */
+.product-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+/* Заглушка замість реального фото */
+.product-image-placeholder {
+    height: 200px;
+    background-color: var(--color-bg-alt);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-badge {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.badge-sale {
+    background-color: var(--color-accent);
+}
+
+.badge-vet {
+    background-color: var(--color-success);
+}
+
+.product-title {
+    font-size: 18px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.product-weight {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    margin-top: auto; /* Притискає ціну та кнопку до низу картки */
+}
+
+.price-current {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.price-old {
+    font-size: 14px;
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Базова кнопка */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+    .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+    }
+/* =========================================
+   10. АДАПТИВНІСТЬ (Media Queries)
+   ========================================= */
+
+/* Для планшетів (екрани менше 992px) */
+@media (max-width: 992px) {
+    /* Перебудовуємо головний макет з двох колонок на одну */
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Робимо панель фільтрів горизонтальною або на всю ширину */
+    .sidebar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sidebar-title {
+        margin-bottom: 0;
+        width: 100%; /* Заголовок на всю ширину, фільтри під ним */
+    }
+
+    .filter-group {
+        margin-bottom: 0;
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+/* Для мобільних телефонів (екрани менше 768px) */
+@media (max-width: 768px) {
+    /* Адаптація шапки: центруємо елементи та дозволяємо перенесення */
+    .header-inner {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Адаптація заголовка каталогу */
+    .catalog-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    /* Адаптація сітки товарів: робимо картки на всю ширину екрана */
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Адаптація підвалу */
+    .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-links {
+        align-items: center;
+    }
+}
+/* =========================================
+   11. ДЕТАЛІЗАЦІЯ UI (Етап 6)
+   ========================================= */
+
+/* Рядок пошуку в шапці */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-bg-main);
+    border: 1px solid var(--color-bg-alt);
+    border-radius: var(--radius-lg);
+    padding: 4px 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    /* Ефект фокусу для всього блоку, коли користувач клікає в інпут */
+    .search-bar:focus-within {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 2px rgba(23, 61, 44, 0.1);
+    }
+
+    .search-bar input {
+        border: none;
+        background: transparent;
+        padding: 8px;
+        outline: none;
+        font-size: 14px;
+        width: 200px;
+        font-family: var(--font-family);
+    }
+
+    .search-bar button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+/* Індикатор кількості товарів у кошику */
+.cart-btn {
+    position: relative;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    font-size: 10px;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transform: translate(20%, -20%);
+}
+
+/* Справжні зображення товарів */
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Фото заповнить блок без розтягування пропорцій */
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* =========================================
+   12. ДИНАМІЧНА ЗМІНА ЦІНИ ТА ВАГИ (CSS-only)
+   ========================================= */
+.product-interactive {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Дозволяє кнопці "В кошик" завжди бути внизу */
+}
+
+/* 1. Ховаємо системні радіокнопки */
+.hidden-radio {
+    display: none;
+}
+
+/* 2. Стилізація плашок ваги (Chips) */
+.weight-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+}
+
+.weight-chip-label {
+    display: inline-block;
+    padding: 6px 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .weight-chip-label:hover {
+        border-color: var(--color-primary);
+    }
+
+/* 3. Зміна кольору активної плашки через селектор ~ */
+/* Якщо радіокнопка активна, наступна за нею label з таким же ID стає зеленою */
+.hidden-radio:nth-of-type(1):checked ~ .weight-selector label:nth-child(1),
+.hidden-radio:nth-of-type(2):checked ~ .weight-selector label:nth-child(2),
+.hidden-radio:nth-of-type(3):checked ~ .weight-selector label:nth-child(3) {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+/* 4. Контейнер цін */
+.price-container {
+    margin-top: auto; /* Притискає ціну до низу */
+    margin-bottom: var(--spacing-sm);
+    min-height: 28px; /* Фіксуємо висоту, щоб картка не стрибала */
+}
+
+/* Ховаємо всі ціни за замовчуванням */
+.price-view {
+    display: none;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+/* 5. Логіка відображення ціни залежно від обраної ваги (для Acana) */
+#acana-2:checked ~ .price-container .price-2,
+#acana-6:checked ~ .price-container .price-6,
+#acana-11:checked ~ .price-container .price-11 {
+    display: flex;
+}
+
+/* Логіка для Royal Canin */
+#royal-1:checked ~ .price-container .price-1,
+#royal-15:checked ~ .price-container .price-15 {
+    display: flex;
+}
+
+/* Логіка для Josera */
+#josera-sm:checked ~ .price-container .price-sm,
+#josera-lg:checked ~ .price-container .price-lg {
+    display: flex;
+}
+/* =========================================
+   13. СТОРІНКА КОШИКА (Етап 7)
+   ========================================= */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* Блок підписки */
+.subscription-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.subscription-info h3 {
+    margin-bottom: 4px;
+}
+
+.subscription-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Кастомний перемикач (Toggle Switch) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle-input {
+    display: none;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .3s;
+        border-radius: 50%;
+    }
+
+.toggle-input:checked + .toggle-slider {
+    background-color: var(--color-success);
+}
+
+    .toggle-input:checked + .toggle-slider:before {
+        transform: translateX(22px);
+    }
+
+/* Список товарів у кошику */
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--color-white);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-bg-main);
+    padding: 4px 12px;
+    border-radius: var(--radius-md);
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-weight: 700;
+    font-size: 18px;
+    width: 100px;
+    text-align: right;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+    .remove-btn:hover {
+        opacity: 1;
+    }
+
+/* Бокова панель (Підсумок) */
+.order-summary {
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.promo-code-box {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+    .promo-code-box input {
+        flex-grow: 1;
+        padding: 10px;
+        border: 1px solid #D1D5DB;
+        border-radius: var(--radius-md);
+        font-family: var(--font-family);
+    }
+
+.btn-secondary {
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-main);
+}
+
+    .btn-secondary:hover {
+        background-color: #E2D5BE;
+    }
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-bottom: 1px solid var(--color-bg-alt);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Адаптивність кошика для мобільних (додати до наявних медіазапитів) */
+@media (max-width: 992px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-item-price {
+        text-align: left;
+    }
+}
+/* =========================================
+   13. СТОРІНКА КОШИКА (Етап 7)
+   ========================================= */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* Блок підписки */
+.subscription-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-bg-alt);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.subscription-info h3 { margin-bottom: 4px; }
+.subscription-info p { font-size: 14px; color: #555; }
+
+/* Кастомний перемикач (Toggle Switch) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.toggle-input { display: none; }
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.toggle-input:checked + .toggle-slider {
+    background-color: var(--color-success);
+}
+
+.toggle-input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+}
+
+/* Список товарів у кошику */
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    background: var(--color-white);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.cart-item-details { flex-grow: 1; }
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-bg-main);
+    padding: 4px 12px;
+    border-radius: var(--radius-md);
+}
+
+.qty-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    font-weight: 700;
+    font-size: 18px;
+    width: 100px;
+    text-align: right;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 16px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.remove-btn:hover { opacity: 1; }
+
+/* Бокова панель (Підсумок) */
+.order-summary {
+    background-color: var(--color-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.promo-code-box {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.promo-code-box input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+}
+
+.btn-secondary {
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-main);
+}
+.btn-secondary:hover { background-color: #E2D5BE; }
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-bottom: 1px solid var(--color-bg-alt);
+    padding-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Адаптивність кошика для мобільних (додати до наявних медіазапитів) */
+@media (max-width: 992px) {
+    .cart-layout { grid-template-columns: 1fr; }
+    .cart-item { flex-wrap: wrap; }
+    .cart-item-price { text-align: left; }
+}
+/* =========================================
+   14. ОСОБИСТИЙ КАБІНЕТ (Етап 8)
+   ========================================= */
+
+/* Бокове меню профілю */
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-bg-alt);
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.user-name {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.user-email {
+    font-size: 14px;
+    color: #666;
+}
+
+.profile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-link {
+    padding: 12px;
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s;
+    font-weight: 500;
+}
+
+    .profile-link:hover {
+        background-color: var(--color-bg-alt);
+    }
+
+    .profile-link.active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+    }
+
+/* Сітка карток тварин */
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.pet-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    overflow: hidden; /* Щоб фото не вилазило за скруглення */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.pet-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.pet-info {
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.pet-header h3 {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.pet-breed {
+    font-size: 14px;
+    color: #666;
+}
+
+.pet-stats {
+    display: flex;
+    gap: var(--spacing-md);
+    background-color: var(--color-bg-main);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.pet-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.pet-actions {
+    margin-top: auto;
+    padding-top: var(--spacing-sm);
+}
+/* =========================================
+   15. МОДАЛЬНЕ ВІКНО (CSS-only) - Етап 9
+   ========================================= */
+
+/* Ховаємо технічний чекбокс */
+.modal-toggle {
+    display: none;
+}
+
+/* Оверлей вікна (прихований за замовчуванням) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Затемнений фон */
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(30, 41, 35, 0.6); /* Темно-зелений прозорий колір */
+    cursor: pointer;
+}
+
+/* Контейнер вікна (з анімацією виїзду знизу) */
+.modal-content {
+    position: relative;
+    background-color: var(--color-white);
+    width: 100%;
+    max-width: 450px;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(30px);
+    transition: transform 0.3s ease;
+    margin: 0 var(--spacing-sm);
+}
+
+/* Логіка відкриття: коли чекбокс :checked, показуємо оверлей */
+.modal-toggle:checked + .modal-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+    .modal-toggle:checked + .modal-overlay .modal-content {
+        transform: translateY(0);
+    }
+
+/* Кнопка закриття (хрестик) */
+.modal-close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+    .modal-close:hover {
+        color: var(--color-error);
+    }
+
+/* Вміст модального вікна */
+.modal-product-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background-color: var(--color-bg-main);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+    .modal-product-info img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: var(--radius-sm);
+    }
+
+/* Стилі для елементів форми */
+.form-group {
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-text-main);
+}
+
+.form-input {
+    padding: 12px;
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-md);
+    font-family: var(--font-family);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+    .form-input:focus {
+        border-color: var(--color-primary);
+    }
+/* =========================================
+   16. ГОЛОВНА СТОРІНКА (Етап 10)
+   ========================================= */
+
+/* Hero Section (Головний банер) */
+.hero-section {
+    background-color: var(--color-bg-alt); /* Теплий бежевий фон */
+    padding: var(--spacing-xl) 0;
+    overflow: hidden;
+}
+
+.hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 550px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: var(--color-text-main);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+}
+
+.hero-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 50% 50% 0 0; /* Цікава форма для фото */
+    border: 8px solid var(--color-white);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Сітка категорій */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.category-card {
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+.category-icon {
+    font-size: 48px;
+    background-color: var(--color-bg-main);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+/* Адаптивність для головної сторінки (мобільні) */
+@media (max-width: 768px) {
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-image-wrapper {
+        justify-content: center;
+    }
+}
