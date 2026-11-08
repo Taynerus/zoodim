@@ -60,23 +60,8 @@
                         </label>
                     </div>
 
-                    <div class="cart-items-list">
-                        <div class="cart-item">
-                            <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=200&q=80" alt="Acana" class="cart-item-img">
-                            <div class="cart-item-details">
-                                <h3 class="product-title">Acana Adult Dog Recipe</h3>
-                                <p class="product-weight">Вага: 11.4 кг</p>
-                            </div>
-                            <div class="cart-item-quantity">
-                                <button class="qty-btn">−</button>
-                                <span>1</span>
-                                <button class="qty-btn">+</button>
-                            </div>
-                            <div class="cart-item-price">
-                                <span class="price-current">3 250 грн</span>
-                            </div>
-                            <button class="remove-btn" aria-label="Видалити">🗑️</button>
-                        </div>
+                    <!-- Контейнер для товарів (порожній, товари підтягне JavaScript) -->
+                    <div class="cart-items-list" id="cart-items-container"></div>
 
                         <div class="cart-item">
                             <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=200&q=80" alt="Royal Canin" class="cart-item-img">
@@ -105,23 +90,23 @@
                         <button class="btn btn-secondary">Застосувати</button>
                     </div>
                     <div class="summary-details">
-                        <div class="summary-row">
-                            <span>Товари (2)</span>
-                            <span>7 350 грн</span>
+                       <div class="summary-row">
+                            <span>Товари</span>
+                            <span id="cart-total-price">0 грн</span>
                         </div>
-                        <div class="summary-row">
+                            <div class="summary-row">
                             <span>Знижка</span>
-                            <span style="color: var(--color-accent);">- 0 грн</span>
-                        </div>
-                        <div class="summary-row">
+                            <span style="color: var(--color-error);">- 0 грн</span>
+                            </div>
+                            <div class="summary-row">
                             <span>Доставка</span>
                             <span style="color: var(--color-success);">Безкоштовно</span>
                         </div>
-                    </div>
-                    <div class="summary-total">
-                        <span>Разом</span>
-                        <span>7 350 грн</span>
-                    </div>
+                            <hr style="border-top: 1px solid var(--color-bg-alt); margin: 16px 0;">
+                            <div class="summary-total">
+                            <span>Разом</span>
+                            <span id="cart-final-price">0 грн</span>
+                        </div>
                     <button class="btn btn-primary" style="margin-top: var(--spacing-md);">Оформити замовлення</button>
                 </aside>
             </div>
