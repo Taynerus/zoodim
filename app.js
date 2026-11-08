@@ -1,17 +1,17 @@
-// Шукаємо кнопку перемикання теми
+// ==========================================
+// 1. ПЕРЕМИКАЧ ТЕМ (Світла / Темна)
+// ==========================================
 const themeToggleBtn = document.getElementById('theme-toggle');
 
-// Перевіряємо, чи була збережена темна тема раніше
+// Перевірка збереженої теми при завантаженні
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-theme');
 }
 
-// Додаємо обробник події кліку
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-theme');
         
-        // Зберігаємо вибір користувача
         if (document.body.classList.contains('dark-theme')) {
             localStorage.setItem('theme', 'dark');
         } else {
@@ -19,36 +19,7 @@ if (themeToggleBtn) {
         }
     });
 }
-const modal = document.getElementById('quick-order-modal');
-const closeBtn = document.querySelector('.close-btn');
 
-// Функція відкриття (її будемо викликати кліком на товари пізніше)
-function openModal() {
-    modal.classList.remove('hidden');
-}
-
-// Функція закриття
-function closeModal() {
-    modal.classList.add('hidden');
-}
-
-if (closeBtn) {
-    closeBtn.addEventListener('click', closeModal);
-}
-
-// Закриття по кліку на темний фон (оверлей)
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-// Закриття клавішею ESC
-window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
-    }
-});
 // ==========================================
 // 2. ДИНАМІЧНЕ МОДАЛЬНЕ ВІКНО "В 1 КЛІК"
 // ==========================================
@@ -63,19 +34,17 @@ if (modal) {
     // Відкриття модалки та підтягування назви товару
     quickOrderBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            // Знаходимо батьківську картку товару
             const card = e.target.closest('.product-card');
-            // Дістаємо назву конкретно цього товару
-            const title = card.querySelector('.product-title').innerText;
             
-            // Динамічно підставляємо назву в модалку (Вимога ЛР №4)
-            productNameDisplay.innerText = title;
-            
-            modal.classList.add('active');
+            if (card) {
+                const title = card.querySelector('.product-title').innerText;
+                productNameDisplay.innerText = title;
+                modal.classList.add('active');
+            }
         });
     });
 
-    // Універсальна функція закриття
+    // Закриття модалки
     const closeModal = () => modal.classList.remove('active');
 
     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
@@ -83,13 +52,15 @@ if (modal) {
     
     // Закриття клавішею ESC
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
 
     // Обробка відправки форми
     if (quickOrderForm) {
         quickOrderForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Зупиняємо стандартну відправку сторінки
+            e.preventDefault();
             const name = document.getElementById('quick-name').value;
             
             alert(`Дякуємо, ${name}! Ваше замовлення на "${productNameDisplay.innerText}" успішно прийнято. Ми зателефонуємо найближчим часом.`);
@@ -103,13 +74,12 @@ if (modal) {
 // ==========================================
 // 3. ЖИВА ФІЛЬТРАЦІЯ КАТАЛОГУ
 // ==========================================
-const filterCheckboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
+const filterCheckboxes = document.querySelectorAll('.sidebar input[type="checkbox"]');
 const productCards = document.querySelectorAll('.product-card');
 
 if (filterCheckboxes.length > 0 && productCards.length > 0) {
     filterCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            // Збираємо масив усіх вибраних категорій (наприклад: ['dogs', 'cats'])
             const activeFilters = Array.from(filterCheckboxes)
                 .filter(cb => cb.checked)
                 .map(cb => cb.dataset.filter);
@@ -117,11 +87,10 @@ if (filterCheckboxes.length > 0 && productCards.length > 0) {
             productCards.forEach(card => {
                 const cardCategory = card.dataset.category;
                 
-                // Якщо не вибрано жодного фільтра АБО товар належить до вибраної категорії — показуємо
                 if (activeFilters.length === 0 || activeFilters.includes(cardCategory)) {
                     card.style.display = 'flex'; 
                 } else {
-                    card.style.display = 'none'; // Інакше приховуємо
+                    card.style.display = 'none';
                 }
             });
         });
