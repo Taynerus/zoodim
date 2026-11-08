@@ -3,13 +3,13 @@
 DESIGN TOKENS (Змінні дизайн-системи)
 ========================================= /
 :root {
-/ Кольорова палітра бренду /
+/ Кольорова палітра бренду */
 --color-primary: #173D2C;
 --color-primary-hover: #2B654A;
 --color-accent: #EF6A4B;
 --color-success: #27885B;
 --color-error: #C94242;
---color-pure-white: #FFFFFF; / Завжди білий (текст кнопок) */
+--color-pure-white: #FFFFFF;
 
 /* Фонові кольори (Світла тема) */
 --color-bg-main: #F8F3E8;
@@ -44,9 +44,7 @@ DESIGN TOKENS (Змінні дизайн-системи)
 
 }
 
-/* =========================================
-ЗМІННІ ДЛЯ ТЕМНОЇ ТЕМИ
-========================================= /
+/* ЗМІННІ ДЛЯ ТЕМНОЇ ТЕМИ /
 body.dark-theme {
 / Фонові кольори (Темна тема) */
 --color-bg-main: #121212;
@@ -138,6 +136,7 @@ transition: color 0.2s ease;
 .header-actions {
 display: flex;
 gap: var(--spacing-sm);
+align-items: center;
 }
 
 .icon-btn {
@@ -153,7 +152,6 @@ transition: background-color 0.2s ease;
 
 .icon-btn:hover { background-color: var(--color-bg-alt); }
 
-/* Рядок пошуку в шапці */
 .search-bar {
 display: flex;
 align-items: center;
@@ -188,7 +186,6 @@ font-size: 16px;
 color: var(--color-text-muted);
 }
 
-/* Індикатор кількості товарів у кошику */
 .cart-btn { position: relative; }
 
 .cart-badge {
@@ -217,6 +214,7 @@ display: flex;
 align-items: center; justify-content: center;
 font-size: 1.2rem;
 transition: all 0.3s ease;
+color: var(--color-text-main);
 }
 
 .theme-toggle-btn:hover {
@@ -473,7 +471,6 @@ font-size: 14px; text-decoration: line-through;
 color: var(--color-text-muted);
 }
 
-/* Кнопки */
 .btn {
 display: block; width: 100%; padding: 12px;
 border: none; border-radius: var(--radius-md);
@@ -516,7 +513,6 @@ margin-bottom: var(--spacing-md);
 .subscription-info h3 { margin-bottom: 4px; color: var(--color-text-title); }
 .subscription-info p { font-size: 14px; color: var(--color-text-main); }
 
-/* Toggle Switch */
 .toggle-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
 .toggle-input { display: none; }
 .toggle-slider {
@@ -573,7 +569,6 @@ color: var(--color-text-muted); transition: opacity 0.2s;
 }
 .remove-btn:hover { opacity: 1; color: var(--color-error); }
 
-/* Підсумок (Order Summary) */
 .order-summary {
 background-color: var(--color-bg-card);
 padding: var(--spacing-md);
@@ -713,7 +708,7 @@ justify-content: center; border-radius: 50%; margin-bottom: 8px;
 }
 
 /* =========================================
-13. МОДАЛЬНЕ ВІКНО (CSS-only)
+13. МОДАЛЬНЕ ВІКНО
 ========================================= */
 .modal-toggle { display: none; }
 
