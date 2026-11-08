@@ -1379,3 +1379,56 @@ img {
         justify-content: center;
     }
 }
+
+/* Стилі кнопки перемикача */
+.theme-toggle-btn {
+    background: transparent;
+    border: 2px solid var(--accent-color, #85CF89);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+    .theme-toggle-btn:hover {
+        transform: scale(1.08);
+        background-color: rgba(133, 207, 137, 0.15);
+    }
+
+/* Приховування іконок залежно від теми */
+.dark-icon {
+    display: none;
+}
+
+body.dark-theme .light-icon {
+    display: none;
+}
+
+body.dark-theme .dark-icon {
+    display: inline;
+}
+/* Базові змінні (світла тема) - вже мають бути у твоєму CSS */
+:root {
+    --bg-color: #FFFFFF;
+    --text-color: #333333;
+    --accent-color: #85CF89;
+}
+
+/* Змінні для темної теми */
+body.dark-theme {
+    --bg-color: #1A1A1A;
+    --text-color: #F5F5F5;
+    /* Акцентний зелений можна залишити без змін або трохи приглушити */
+}
+
+/* Застосування змінних (приклад) */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
