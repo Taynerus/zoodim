@@ -157,3 +157,107 @@ if (addCartBtns.length > 0) {
 
 // Запускаємо оновлення лічильника при завантаженні будь-якої сторінки
 updateCartBadge();
+// ==========================================
+// 5. РЕНДЕР СТОРІНКИ КОШИКА (cart.html)
+// ==========================================
+const cartContainer = document.getElementById('cart-items-container');
+const cartTotalPrice = document.getElementById('cart-total-price');
+const cartFinalPrice = document.getElementById('cart-final-price');
+
+function renderCart() {
+    // Цей код виконається тільки якщо ми знаходимося на сторінці cart.html
+    if (!cartContainer) return;
+
+    cartContainer.innerHTML = ''; // Очищаємо контейнер перед малюванням
+    let total = 0;
+
+    // Якщо кошик порожній
+    if (cart.length === 0) {
+        cartContainer.innerHTML = `
+            <div style="text-align: center; padding: 40px 20px; background: var(--bg-card); border-radius: var(--radius-md);">
+                <h3 style="margin-bottom: 10px;">Ваш кошик порожній 😔</h3>
+                <p style="margin-bottom: 20px; color: var(--text-secondary);">Час порадувати свого улюбленця чимось смачненьким!</p>
+                <a href="index.html" class="btn btn-primary" style="display: inline-block; width: auto; padding: 10px 20px;">Перейти до каталогу</a>
+            </div>
+        `;
+        updateSummary(0);
+        return;
+    }
+
+    // Якщо є товари, перебираємо їх і малюємо
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        
+        const cartItemHTML = `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h4 style="margin-bottom: 4px; color: var(--text-primary);">${item.name}</h4>
+                    <p style="font-size: 14px; color: var(--text-secondary);">Ціна: ${item.price} грн</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <button class="qty-btn minus-btn" data-index="${index}">−</button>
+                    <span style="color: var(--text-primary);">${item.quantity}</span>
+                    <button class="qty-btn plus-btn" data-index="${index}">+</button>
+                </div>
+                <div class="cart-item-price" style="color: var(--text-primary);">${itemTotal} грн</div>
+                <button class="remove-btn" data-index="${index}" title="Видалити товар">🗑️</button>
+            </div>
+        `;
+        cartContainer.insertAdjacentHTML('beforeend', cartItemHTML);
+    });
+
+    updateSummary(total);
+    attachCartEvents(); // Прив'язуємо кліки до кнопок +, - та 🗑️
+}
+
+// Оновлення текстових полів з ціною
+function updateSummary(total) {
+    if (cartTotalPrice) cartTotalPrice.innerText = `${total} грн`;
+    if (cartFinalPrice) cartFinalPrice.innerText = `${total} грн`;
+}
+
+// Обробники подій для кнопок всередині кошика
+function attachCartEvents() {
+    // Збільшення кількості (+)
+    document.querySelectorAll('.plus-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            cart[index].quantity += 1;
+            saveAndRender();
+        });
+    });
+
+    // Зменшення кількості (-)
+    document.querySelectorAll('.minus-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+            } else {
+                cart.splice(index, 1); // Якщо була 1 шт і натиснули "-", видаляємо товар
+            }
+            saveAndRender();
+        });
+    });
+
+    // Кнопка видалення (Кошик/Смітник)
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = e.target.dataset.index;
+            cart.splice(index, 1); // Видаляємо товар з масиву
+            saveAndRender();
+        });
+    });
+}
+
+// Збереження в пам'ять, оновлення шапки та перемальовування кошика
+function saveAndRender() {
+    localStorage.setItem('zoodim_cart', JSON.stringify(cart));
+    updateCartBadge(); // Оновлюємо цифру в шапці (з кроку 1)
+    renderCart();      // Перемальовуємо сам кошик
+}
+
+// Запускаємо малювання кошика одразу при завантаженні сторінки
+renderCart();
