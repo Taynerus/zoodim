@@ -2,8 +2,9 @@
 
 DESIGN TOKENS (Змінні дизайн-системи)
 ========================================= /
-:root {
-/ Кольорова палітра бренду */
+:root 
+{
+/* Кольорова палітра бренду */
 --color-primary: #173D2C;
 --color-primary-hover: #2B654A;
 --color-accent: #EF6A4B;
@@ -40,7 +41,6 @@ DESIGN TOKENS (Змінні дизайн-системи)
 --radius-sm: 8px;
 --radius-md: 12px;
 --radius-lg: 20px;
-
 
 }
 
