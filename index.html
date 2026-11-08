@@ -53,31 +53,31 @@
         <div class="container layout-grid">
 
             <!-- Бокова панель з фільтрами -->
-            <aside class="sidebar">
-                <h2 class="sidebar-title">Фільтри</h2>
-                <div class="filter-group">
-                    <h3 class="filter-subtitle">Категорія</h3>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" checked>
-                        <span>Сухий корм</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox">
-                        <span>Вологий корм</span>
-                    </label>
-                </div>
-                <div class="filter-group">
-                    <h3 class="filter-subtitle">Особливі потреби</h3>
-                    <label class="custom-checkbox">
-                        <input type="checkbox">
-                        <span>Для стерилізованих</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox">
-                        <span>Чутливе травлення</span>
-                    </label>
-                </div>
-            </aside>
+<aside class="sidebar">
+    <h2 class="sidebar-title">Фільтри</h2>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Категорія</h3>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="dry-food" checked>
+            <span>Сухий корм</span>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="wet-food">
+            <span>Вологий корм</span>
+        </label>
+    </div>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Особливі потреби</h3>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="sterilized">
+            <span>Для стерилізованих</span>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="sensitive-digestion">
+            <span>Чутливе травлення</span>
+        </label>
+    </div>
+</aside>
 
             <!-- Каталог товарів -->
             <section class="catalog" aria-label="Список товарів">
@@ -91,6 +91,9 @@
 
                     <!-- Картка 1: Acana -->
                     <article class="product-card">
+                        <div class="product-card" data-category="dogs">
+                        <!-- вміст картки -->
+                        </div>
                         <div class="card-badge badge-sale">Акція</div>
                         <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400&q=80" alt="Корм Acana" class="product-image">
 
@@ -127,6 +130,7 @@
                             </div>
 
                             <button class="btn btn-primary">В кошик</button>
+                            <button class="btn btn-secondary btn-quick-order">В 1 клік</button>
                             <!-- Кнопка виклику модального вікна -->
                             <label for="quick-buy-modal" class="btn btn-secondary" style="margin-top: 8px;">В 1 клік</label>
                         </div>
@@ -134,6 +138,9 @@
 
                     <!-- Картка 2: Royal Canin -->
                     <article class="product-card">
+                        <div class="product-card" data-category="dogs">
+                        <!-- вміст картки -->
+                        </div>
                         <div class="card-badge badge-vet">Vet Diet</div>
                         <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=400&q=80" alt="Корм Royal Canin" class="product-image">
 
@@ -160,11 +167,15 @@
                             </div>
 
                             <button class="btn btn-primary">В кошик</button>
+                            <button class="btn btn-secondary btn-quick-order">В 1 клік</button>
                         </div>
                     </article>
 
                     <!-- Картка 3: Josera -->
                     <article class="product-card">
+                        <div class="product-card" data-category="dogs">
+                        <!-- вміст картки -->
+                        </div>
                         <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&q=80" alt="Корм Josera" class="product-image">
 
                         <div class="product-info">
@@ -190,6 +201,7 @@
                             </div>
 
                             <button class="btn btn-primary">В кошик</button>
+                            <button class="btn btn-secondary btn-quick-order">В 1 клік</button>
                         </div>
                     </article>
 
@@ -247,6 +259,30 @@
             </form>
         </div>
     </div>
+    <!-- Модальне вікно "Швидке замовлення" -->
+<div id="quick-order-modal" class="modal-overlay">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Швидке замовлення</h2>
+        
+        <div class="modal-product-info">
+            <h3 id="modal-product-name" style="margin-bottom: 15px; color: var(--color-primary);">Назва товару</h3>
+        </div>
+        
+        <form id="quick-order-form">
+            <div class="form-group">
+                <label class="form-label" for="quick-name">Ваше ім'я</label>
+                <input type="text" id="quick-name" class="form-input" required placeholder="Олександр">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="quick-phone">Номер телефону</label>
+                <input type="tel" id="quick-phone" class="form-input" required placeholder="+380 50 123 45 67">
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Підтвердити замовлення</button>
+        </form>
+    </div>
+</div>
  <script src="app.js" defer></script>
     <div id="quick-order-modal" class="modal hidden">
         <div class="modal-content">
