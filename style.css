@@ -1432,3 +1432,42 @@ body {
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+/* Перевизначення CSS-змінних для темної теми */
+body.dark-theme {
+    --bg-color: #18191A;
+    --card-bg: #242526;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B0B3B8;
+    --header-bg: #242526;
+}
+
+/* Застосування змінних до елементів */
+body.dark-theme header {
+    background-color: var(--header-bg) !important;
+}
+
+/* Перевизначення карток товарів та блоків, щоб вони не залишалися білими */
+body.dark-theme .product-card,
+body.dark-theme .cart-item,
+body.dark-theme .summary-card,
+body.dark-theme .pet-card,
+body.dark-theme .filter-sidebar,
+body.dark-theme .modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Виправлення кольору заголовків та текстів у темній темі */
+body.dark-theme h1, 
+body.dark-theme h2, 
+body.dark-theme h3,
+body.dark-theme .product-title,
+body.dark-theme .category-title {
+    color: var(--text-primary) !important;
+}
+
+/* Виправлення бежевого баннера на головній */
+body.dark-theme .hero-banner {
+    background-color: #2D3748 !important;
+    color: #FFFFFF !important;
+}
