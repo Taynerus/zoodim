@@ -1471,3 +1471,71 @@ body.dark-theme .hero-banner {
     background-color: #2D3748 !important;
     color: #FFFFFF !important;
 }
+/* ==========================================
+   ФІКС КОНТРАСТНОСТІ ДЛЯ ТЕМНОЇ ТЕМИ
+   ========================================== */
+
+/* 1. Загальний фон та білий колір для всього базвого тексту */
+body.dark-theme {
+    background-color: #121212 !important;
+    color: #FFFFFF !important;
+}
+
+/* 2. Шапка сайту та її текстові елементи */
+body.dark-theme header,
+body.dark-theme nav,
+body.dark-theme .header-container {
+    background-color: #1E1E1E !important;
+}
+
+body.dark-theme header a,
+body.dark-theme header .logo,
+body.dark-theme nav a,
+body.dark-theme .nav-link {
+    color: #FFFFFF !important;
+}
+
+/* 3. Заголовки, назви товарів, фільтри та ціни */
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme label,
+body.dark-theme .product-title,
+body.dark-theme .hero-title,
+body.dark-theme .hero-subtitle,
+body.dark-theme .price,
+body.dark-theme .filter-title,
+body.dark-theme .filter-group {
+    color: #FFFFFF !important;
+}
+
+/* 4. Картки товарів, сайдбари та блоки в профілі/кошику */
+body.dark-theme .product-card,
+body.dark-theme .filter-sidebar,
+body.dark-theme .cart-item,
+body.dark-theme .summary-card,
+body.dark-theme .user-sidebar,
+body.dark-theme .pet-card,
+body.dark-theme .modal-content {
+    background-color: #1E1E1E !important;
+    border-color: #333333 !important;
+    color: #FFFFFF !important;
+}
+
+/* 5. Виправлення світло-бежевих блоків (баннер та підсумок) */
+body.dark-theme .hero-banner,
+body.dark-theme .delivery-info,
+body.dark-theme .info-box {
+    background-color: #262626 !important;
+    color: #FFFFFF !important;
+}
+
+/* 6. Іконки та кнопка пошуку */
+body.dark-theme .search-bar input {
+    background-color: #2A2A2A !important;
+    color: #FFFFFF !important;
+    border-color: #444 !important;
+}
