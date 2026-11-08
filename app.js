@@ -96,3 +96,64 @@ if (filterCheckboxes.length > 0 && productCards.length > 0) {
         });
     });
 }
+// ==========================================
+// 4. КОШИК ТОВАРІВ (LocalStorage)
+// ==========================================
+
+// 1. Отримуємо кошик з пам'яті браузера або створюємо порожній масив
+let cart = JSON.parse(localStorage.getItem('zoodim_cart')) || [];
+const cartBadge = document.getElementById('cart-badge-count');
+
+// Функція оновлення лічильника в шапці
+function updateCartBadge() {
+    if (cartBadge) {
+        // Рахуємо загальну кількість всіх товарів у кошику
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.innerText = totalItems;
+        // Показуємо кружечок тільки якщо в кошику є товари
+        cartBadge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+}
+
+// 2. Обробка кліку на кнопку "В кошик"
+const addCartBtns = document.querySelectorAll('.btn-add-cart');
+
+if (addCartBtns.length > 0) {
+    addCartBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Зчитуємо дані товару з атрибутів кнопки
+            const id = btn.dataset.id;
+            const name = btn.dataset.name;
+            const price = parseInt(btn.dataset.price);
+            const image = btn.dataset.image;
+            
+            // Перевіряємо, чи є вже такий товар у кошику
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1; // Якщо є - збільшуємо кількість
+            } else {
+                // Якщо немає - додаємо новий об'єкт у масив
+                cart.push({ id, name, price, image, quantity: 1 });
+            }
+            
+            // Зберігаємо оновлений кошик у LocalStorage
+            localStorage.setItem('zoodim_cart', JSON.stringify(cart));
+            
+            // Оновлюємо лічильник у шапці
+            updateCartBadge();
+            
+            // Візуальний фідбек для користувача (кнопка стає зеленою на 1.5 секунди)
+            const originalText = btn.innerText;
+            btn.innerText = 'Додано ✓';
+            btn.style.backgroundColor = 'var(--color-success)';
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = '';
+            }, 1500);
+        });
+    });
+}
+
+// Запускаємо оновлення лічильника при завантаженні будь-якої сторінки
+updateCartBadge();
