@@ -327,9 +327,6 @@ if (checkoutBtn) {
 // ==========================================
 // 7. ОСОБИСТИЙ КАБІНЕТ: ДОДАВАННЯ УЛЮБЛЕНЦЯ
 // ==========================================
-// ==========================================
-// 7. ОСОБИСТИЙ КАБІНЕТ: ДОДАВАННЯ УЛЮБЛЕНЦЯ
-// ==========================================
 const addPetBtn = document.getElementById('add-pet-btn');
 const addPetModal = document.getElementById('add-pet-modal');
 const addPetForm = document.getElementById('add-pet-form');
