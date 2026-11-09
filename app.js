@@ -327,52 +327,83 @@ if (checkoutBtn) {
 // ==========================================
 // 7. ОСОБИСТИЙ КАБІНЕТ: ДОДАВАННЯ УЛЮБЛЕНЦЯ
 // ==========================================
-// Обробка форми додавання улюбленця
-if (addPetForm && petsGrid) {
-    addPetForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+// ==========================================
+// 7. ОСОБИСТИЙ КАБІНЕТ: ДОДАВАННЯ УЛЮБЛЕНЦЯ
+// ==========================================
+const addPetBtn = document.getElementById('add-pet-btn');
+const addPetModal = document.getElementById('add-pet-modal');
+const addPetForm = document.getElementById('add-pet-form');
+const petsGrid = document.getElementById('pets-grid-container');
 
-        const name = document.getElementById('pet-name').value;
-        const type = document.getElementById('pet-type').value;
-        const weight = document.getElementById('pet-weight').value;
-        const age = document.getElementById('pet-age').value;
-
-        // Автоматично обираємо відповідне фото за введеним видом/породою
-        const lowerType = type.toLowerCase();
-        let petImageUrl = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=80'; // Фото песика за замовчуванням
-
-        if (lowerType.includes('кіт') || lowerType.includes('кош') || lowerType.includes('кіш') || lowerType.includes('cat')) {
-            petImageUrl = 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&q=80'; // Фото котика
-        }
-
-        // Створюємо HTML нової картки з відповідним фото
-        const newPetCardHTML = `
-            <article class="pet-card" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
-                <img src="${petImageUrl}" alt="${name}" class="pet-image">
-                <div class="pet-info">
-                    <div class="pet-header">
-                        <h3 style="color: var(--text-primary); margin-bottom: 4px;">${name}</h3>
-                        <span class="pet-breed" style="color: var(--text-secondary); font-size: 14px;">${type}</span>
-                    </div>
-                    <div class="pet-stats" style="background-color: var(--bg-main); margin-top: 16px;">
-                        <div class="stat-box">
-                            <span class="stat-label" style="color: var(--text-secondary);">Вага</span>
-                            <span class="stat-value" style="color: var(--text-primary); font-weight: 700;">${weight} кг</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-label" style="color: var(--text-secondary);">Вік</span>
-                            <span class="stat-value" style="color: var(--text-primary); font-weight: 700;">${age}</span>
-                        </div>
-                    </div>
-                    <div class="pet-actions" style="margin-top: 16px;">
-                        <button class="btn btn-secondary" style="width: 100%;">Редагувати</button>
-                    </div>
-                </div>
-            </article>
-        `;
-
-        petsGrid.insertAdjacentHTML('beforeend', newPetCardHTML);
-        addPetForm.reset();
-        closePetModal();
+if (addPetBtn && addPetModal) {
+    // Відкриття модалки
+    addPetBtn.addEventListener('click', () => {
+        addPetModal.classList.add('active');
     });
+
+    // Універсальна функція закриття
+    const closePetModal = () => addPetModal.classList.remove('active');
+    
+    // Закриття по хрестику та фону
+    const closePetBtn = addPetModal.querySelector('.modal-close');
+    const petBackdrop = addPetModal.querySelector('.modal-backdrop');
+    if (closePetBtn) closePetBtn.addEventListener('click', closePetModal);
+    if (petBackdrop) petBackdrop.addEventListener('click', closePetModal);
+
+    // Закриття клавішею ESC
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && addPetModal.classList.contains('active')) {
+            closePetModal();
+        }
+    });
+
+    // Обробка форми додавання
+    if (addPetForm && petsGrid) {
+        addPetForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('pet-name').value;
+            const type = document.getElementById('pet-type').value;
+            const weight = document.getElementById('pet-weight').value;
+            const age = document.getElementById('pet-age').value;
+
+            // Автоматично обираємо відповідне фото
+            const lowerType = type.toLowerCase();
+            let petImageUrl = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&q=80'; // Песик за замовчуванням
+
+            if (lowerType.includes('кіт') || lowerType.includes('кош') || lowerType.includes('кіш') || lowerType.includes('cat')) {
+                petImageUrl = 'https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=400&q=80'; // Котик
+            }
+
+            // Створюємо HTML нової картки з відповідним фото
+            const newPetCardHTML = `
+                <article class="pet-card" style="background-color: var(--bg-card); border: 1px solid var(--border-color);">
+                    <img src="${petImageUrl}" alt="${name}" class="pet-image">
+                    <div class="pet-info">
+                        <div class="pet-header">
+                            <h3 style="color: var(--text-primary); margin-bottom: 4px;">${name}</h3>
+                            <span class="pet-breed" style="color: var(--text-secondary); font-size: 14px;">${type}</span>
+                        </div>
+                        <div class="pet-stats" style="background-color: var(--bg-main); margin-top: 16px;">
+                            <div class="stat-box">
+                                <span class="stat-label" style="color: var(--text-secondary);">Вага</span>
+                                <span class="stat-value" style="color: var(--text-primary); font-weight: 700;">${weight} кг</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-label" style="color: var(--text-secondary);">Вік</span>
+                                <span class="stat-value" style="color: var(--text-primary); font-weight: 700;">${age}</span>
+                            </div>
+                        </div>
+                        <div class="pet-actions" style="margin-top: 16px;">
+                            <button class="btn btn-secondary" style="width: 100%;">Редагувати</button>
+                        </div>
+                    </div>
+                </article>
+            `;
+
+            petsGrid.insertAdjacentHTML('beforeend', newPetCardHTML);
+            addPetForm.reset();
+            closePetModal();
+        });
+    }
 }
