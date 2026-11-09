@@ -160,6 +160,7 @@ updateCartBadge();
 // ==========================================
 // 5. РЕНДЕР СТОРІНКИ КОШИКА (cart.html)
 // ==========================================
+let discountPercent = 0; // Початкова знижка 0%
 const cartContainer = document.getElementById('cart-items-container');
 const cartTotalPrice = document.getElementById('cart-total-price');
 const cartFinalPrice = document.getElementById('cart-final-price');
@@ -267,8 +268,6 @@ renderCart();
 const promoInput = document.getElementById('promo-input');
 const promoBtn = document.getElementById('promo-btn');
 const checkoutBtn = document.getElementById('checkout-btn');
-let discountPercent = 0; // Початкова знижка 0%
-
 // Функція застосування промокоду
 if (promoBtn && promoInput) {
     promoBtn.addEventListener('click', () => {
