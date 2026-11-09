@@ -65,10 +65,12 @@
                 <div class="catalog-header">
                     <h1 class="page-title">Мої улюбленці</h1>
                     <button class="btn btn-primary" style="width: auto; padding: 10px 20px;">+ Додати профіль</button>
+                    <!-- Кнопка додавання -->
+                    <button class="btn btn-primary" id="add-pet-btn">+ Додати профіль</button>
                 </div>
 
                 <!-- Сітка карток тварин -->
-                <div class="pets-grid">
+                <div class="pets-grid" id="pets-grid-container">
 
                     <!-- Картка 1: Марсель -->
                     <article class="pet-card">
@@ -144,6 +146,36 @@
             </div>
         </div>
     </footer>
+    <!-- Модальне вікно "Додати улюбленця" -->
+<div id="add-pet-modal" class="modal-overlay">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2 style="margin-bottom: var(--spacing-md); color: var(--text-primary);">Новий улюбленець</h2>
+        
+        <form id="add-pet-form">
+            <div class="form-group">
+                <label class="form-label" for="pet-name">Ім'я</label>
+                <input type="text" id="pet-name" class="form-input" required placeholder="Наприклад, Рекс">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="pet-type">Вид / Порода</label>
+                <input type="text" id="pet-type" class="form-input" required placeholder="Собака, Вівчарка">
+            </div>
+            <div style="display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="pet-weight">Вага (кг)</label>
+                    <input type="number" step="0.1" id="pet-weight" class="form-input" required placeholder="12.5">
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label class="form-label" for="pet-age">Вік (років/місяців)</label>
+                    <input type="text" id="pet-age" class="form-input" required placeholder="3 роки">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Зберегти профіль</button>
+        </form>
+    </div>
+</div>
     <script src="app.js" defer></script>
 </body>
 </html>
