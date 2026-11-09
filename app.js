@@ -261,3 +261,67 @@ function saveAndRender() {
 
 // Запускаємо малювання кошика одразу при завантаженні сторінки
 renderCart();
+// ==========================================
+// 6. ОФОРМЛЕННЯ ЗАМОВЛЕННЯ ТА ПРОМОКОДИ
+// ==========================================
+const promoInput = document.getElementById('promo-input');
+const promoBtn = document.getElementById('promo-btn');
+const checkoutBtn = document.getElementById('checkout-btn');
+let discountPercent = 0; // Початкова знижка 0%
+
+// Функція застосування промокоду
+if (promoBtn && promoInput) {
+    promoBtn.addEventListener('click', () => {
+        const code = promoInput.value.trim().toUpperCase();
+        
+        if (code === 'ZOO2026') {
+            discountPercent = 0.10; // 10% знижка
+            alert('Промокод успішно застосовано! Знижка 10%');
+        } else if (code !== '') {
+            discountPercent = 0;
+            alert('Невірний промокод');
+        }
+        
+        // Перераховуємо суму з урахуванням знижки
+        renderCart(); 
+    });
+}
+
+// Оновлена функція підрахунку (перезаписуємо існуючу логіку updateSummary)
+// Знайди стару функцію updateSummary і ЗАМІНИ її на цю:
+function updateSummary(total) {
+    if (cartTotalPrice) cartTotalPrice.innerText = `${total} грн`;
+    
+    if (cartFinalPrice) {
+        const discountAmount = Math.round(total * discountPercent);
+        const finalSum = total - discountAmount;
+        
+        // Знаходимо рядок знижки (другий рядок у підсумку) і оновлюємо його
+        const discountDisplay = document.querySelector('.summary-row:nth-child(2) span:last-child');
+        if (discountDisplay) {
+            discountDisplay.innerText = discountAmount > 0 ? `- ${discountAmount} грн` : '- 0 грн';
+        }
+        
+        cartFinalPrice.innerText = `${finalSum} грн`;
+    }
+}
+
+// Обробка натискання "Оформити замовлення"
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Ваш кошик порожній! Додайте товари для оформлення замовлення.');
+            return;
+        }
+        
+        alert(`Дякуємо за замовлення! Сума до оплати: ${cartFinalPrice.innerText}. Наш менеджер зв'яжеться з вами найближчим часом.`);
+        
+        // Очищаємо кошик
+        cart = [];
+        localStorage.removeItem('zoodim_cart');
+        
+        // Перемальовуємо пустий кошик та оновлюємо шапку
+        renderCart();
+        updateCartBadge();
+    });
+}
