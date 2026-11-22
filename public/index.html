@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЗооДім - Каталог товарів</title>
+    <meta name="description" content="ЗооДім — інтернет-магазин якісних кормів та ветеринарних дієт для собак і котів.">
+    <!-- Підключення шрифту Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Підключення наших стилів -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка сайту -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">ЗооДім</a>
+
+            <nav class="main-nav" aria-label="Головне меню">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Каталог</a></li>
+                    <li><a href="index.html" class="nav-link">Акції</a></li>
+                    <li><a href="index.html" class="nav-link">Ветеринарні дієти</a></li>
+                 </ul>
+            </nav>
+
+            <!-- Новий рядок пошуку -->
+            <div class="search-bar">
+                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук" id="search-input">
+                <button type="button" aria-label="Знайти">🔍</button>
+            </div>
+
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключити тему">
+                    <span class="theme-icon light-icon">🌙</span>
+                    <span class="theme-icon dark-icon">☀️</span>
+                </button>
+                <a href="profile.html" class="icon-btn" aria-label="Профіль вихованця" style="text-decoration: none;">👤</a>
+                <!-- Кошик із бейджем -->
+                <a href="cart.html" class="icon-btn cart-btn" aria-label="Кошик">
+                🛒
+                <!-- Цей кружечок будемо оновлювати через JS -->
+                <span class="cart-badge" id="cart-badge-count" style="display: none;">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основний контент -->
+    <main class="main-content">
+        <div class="container layout-grid">
+
+            <!-- Бокова панель з фільтрами -->
+<aside class="sidebar">
+    <h2 class="sidebar-title">Фільтри</h2>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Категорія</h3>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="dogs">
+            <span>Для собак</span>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="cats">
+            <span>Для котів</span>
+        </label>
+    </div>
+    <div class="filter-group">
+        <h3 class="filter-subtitle">Особливі потреби</h3>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="vet">
+            <span>Ветеринарні дієти</span>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" data-filter="sensitive-digestion">
+            <span>Чутливе травлення</span>
+        </label>
+    </div>
+</aside>
+
+            <!-- Каталог товарів -->
+            <section class="catalog" aria-label="Список товарів">
+                <div class="catalog-header">
+                    <h1 class="page-title">Сухий корм для собак</h1>
+                    <span class="results-count">Знайдено: 24 товари</span>
+                </div>
+
+                <!-- Сітка товарів (Grid) -->
+                <div class="products-grid" id="products-grid">
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Підвал сайту -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-info">
+                <p class="logo" style="color: var(--color-white);">ЗооДім</p>
+                <p class="footer-desc">Турбота про ваших улюбленців у кожному замовленні.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Доставка та оплата</a>
+                <a href="#">Контакти</a>
+                <a href="#">Умови використання</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         МОДАЛЬНЕ ВІКНО "КУПИТИ В 1 КЛІК" (CSS-only)
+         ========================================= -->
+    <input type="checkbox" id="quick-buy-modal" class="modal-toggle">
+
+    <div class="modal-overlay">
+        <label for="quick-buy-modal" class="modal-backdrop"></label>
+
+        <div class="modal-content">
+            <label for="quick-buy-modal" class="modal-close">×</label>
+            <h2 style="margin-bottom: var(--spacing-md); color: var(--color-primary);">Швидке замовлення</h2>
+
+            <div class="modal-product-info">
+                <img src="https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=100&q=80" alt="Acana">
+                <div>
+                    <h4 style="margin-bottom: 4px;">Acana Adult Dog Recipe</h4>
+                    <p style="color: #666; font-size: 14px;">11.4 кг — 3 250 грн</p>
+                </div>
+            </div>
+
+            <form class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Ваше ім'я</label>
+                    <input type="text" class="form-input" placeholder="Наприклад, Олександр" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Номер телефону</label>
+                    <input type="tel" class="form-input" value="+380" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: var(--spacing-sm);">Замовити дзвінок</button>
+            </form>
+        </div>
+    </div>
+    <!-- Модальне вікно "Швидке замовлення" -->
+<div id="quick-order-modal" class="modal-overlay">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2>Швидке замовлення</h2>
+        
+        <div class="modal-product-info">
+            <h3 id="modal-product-name" style="margin-bottom: 15px; color: var(--color-primary);">Назва товару</h3>
+        </div>
+        
+        <form id="quick-order-form">
+            <div class="form-group">
+                <label class="form-label" for="quick-name">Ваше ім'я</label>
+                <input type="text" id="quick-name" class="form-input" required placeholder="Олександр">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="quick-phone">Номер телефону</label>
+                <input type="tel" id="quick-phone" class="form-input" required placeholder="+380 50 123 45 67">
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Підтвердити замовлення</button>
+        </form>
+    </div>
+</div>
+ <script src="app.js" defer></script>
+    <div id="quick-order-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Швидке замовлення</h2>
+            <p>Тут буде форма...</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ЗооДім - Кошик</title>
+    <meta name="description" content="ЗооДім — інтернет-магазин якісних кормів та ветеринарних дієт для собак і котів.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,33 +13,39 @@
 <body>
 
     <!-- Шапка сайту -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo">ЗооДім</a>
-            <nav class="main-nav" aria-label="Головне меню">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Каталог</a></li>
-                    <li><a href="#" class="nav-link">Акції</a></li>
-                    <li><a href="#" class="nav-link">Ветеринарні дієти</a></li>
-                </ul>
-            </nav>
-            <div class="search-bar">
-                <input type="search" placeholder="Пошук товарів..." aria-label="Пошук">
-                <button type="button" aria-label="Знайти">🔍</button>
-            </div>
-            <div class="header-actions">
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключити тему">
-                    <span class="theme-icon light-icon">🌙</span>
-                    <span class="theme-icon dark-icon">☀️</span>
-                </button>
-                <button class="icon-btn" aria-label="Профіль вихованця">👤</button>
-                <button class="icon-btn cart-btn" aria-label="Кошик">
-                    🛒
-                    <span class="cart-badge">2</span>
-                </button>
-            </div>
+<header class="header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo">ЗооДім</a>
+
+        <nav class="main-nav" aria-label="Головне меню">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Каталог</a></li>
+                <li><a href="index.html" class="nav-link">Акції</a></li>
+                <li><a href="index.html" class="nav-link">Ветеринарні дієти</a></li>
+            </ul>
+        </nav>
+
+        <!-- Новий рядок пошуку -->
+        <div class="search-bar">
+            <input type="search" placeholder="Пошук товарів..." aria-label="Пошук" id="search-input">
+            <button type="button" aria-label="Знайти">🔍</button>
         </div>
-    </header>
+
+        <div class="header-actions">
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Переключити тему">
+                <span class="theme-icon light-icon">🌙</span>
+                <span class="theme-icon dark-icon">☀️</span>
+            </button>
+            <a href="profile.html" class="icon-btn" aria-label="Профіль вихованця" style="text-decoration: none;">👤</a>
+            <!-- Кошик із бейджем -->
+            <a href="cart.html" class="icon-btn cart-btn" aria-label="Кошик">
+                🛒
+                <!-- Цей кружечок будемо оновлювати через JS -->
+                <span class="cart-badge" id="cart-badge-count" style="display: none;">0</span>
+            </a>
+        </div>
+    </div>
+</header>
 
     <!-- Основний контент кошика -->
     <main class="main-content">
@@ -89,6 +96,16 @@
                             <span>Разом</span>
                             <span id="cart-final-price">0 грн</span>
                         </div>
+                        <div class="checkout-contacts" style="margin-top: 16px;">
+                             <div class="form-group" style="margin-bottom: 10px;">
+                                 <label class="form-label" for="checkout-name">Ваше ім'я</label>
+                                 <input type="text" id="checkout-name" class="form-input" placeholder="Олександр" required>
+                             </div>
+                         <div class="form-group" style="margin-bottom: 10px;">
+                                 <label class="form-label" for="checkout-phone">Номер телефону</label>
+                                <input type="tel" id="checkout-phone" class="form-input" placeholder="+380 99 123 45 67" required>
+                         </div>
+                    </div>
                     <button class="btn btn-primary" id="checkout-btn" style="width: 100%; margin-top: var(--spacing-md);">Оформити замовлення</button>
                 </aside>
             </div>
